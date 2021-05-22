@@ -1,15 +1,18 @@
-import React, {useState} from 'react';
-import {Container, FormContainer, FormTitle} from './styles';
+import React from 'react';
 
 import FormInput from '~/components/FormInput';
 import FormButton from '~/components/FormButton';
+import CustomErrorMessage from '~/components/CustomErrorMessage';
 
 import {Formik} from 'formik';
+import ValidationSchema from './validationSchema';
 
 import {InitialSigninStateProps, RootState} from '~/shared/store/app.state';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {signinActions} from '~/store/ducks/Auth/Signin';
+
+import {Container, FormContainer, FormTitle, Footer} from './styles';
 
 interface FormValues {
     email: string;
@@ -17,9 +20,6 @@ interface FormValues {
 }
 
 export default function Signin() {
-
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
 
     const initialFormValues: FormValues = {
         email: '',
@@ -43,26 +43,31 @@ export default function Signin() {
             <Formik
                 initialValues={initialFormValues}
                 onSubmit={handleSignin}
+                validationSchema={ValidationSchema}
+                validateOnChange={false}
             >
                 <FormContainer>
                     <FormTitle>React Auth Boilerplate</FormTitle>
+
                     <FormInput 
                         type="email"
                         name="email"
                         placeholder="Email"
-                        // onChange={e => setEmail(e.target.value)}
-                        // value={email}
                     />
+                    <CustomErrorMessage name="email"/>
+
                     <FormInput 
                         type="password"
                         name="password"
                         placeholder="Senha"
-                        // onChange={e => setPassword(e.target.value)}
-                        // value={password}
                     />
-                    <FormButton type="submit" loading={signin.loading} disabled={signin.loading}>
-                        Entrar
-                    </FormButton>
+                    <CustomErrorMessage name="password"/>
+
+                    <Footer>
+                        <FormButton type="submit" loading={signin.loading} disabled={signin.loading}>
+                            Entrar
+                        </FormButton>
+                    </Footer>
                 </FormContainer>
             </Formik>
         </Container>

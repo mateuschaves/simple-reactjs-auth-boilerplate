@@ -3,7 +3,6 @@ import {colors} from '~/theme';
 
 import {Form} from 'formik';
 
-
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -28,4 +27,8 @@ export const FormTitle = styled.h4`
     font-size: 24px;
     color: ${colors.black};
     margin: 20px 0px 20px 0px; 
+`;
+
+export const Footer = styled.div`
+    margin-top: 20px;
 `;
