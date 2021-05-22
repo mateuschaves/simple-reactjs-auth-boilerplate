@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import {Field} from 'formik';
 
 import {colors} from '~/theme';
 
-export const TextInput = styled.input`
+export const TextInput = styled(Field)`
     border: 1px solid ${colors.lightGray};
     border-radius: 8px;
     height: 56px;

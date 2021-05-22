@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {colors} from '~/theme';
 
+import {Form} from 'formik';
+
 
 export const Container = styled.div`
     display: flex;
@@ -11,7 +13,7 @@ export const Container = styled.div`
     height: 100vh;
 `;
 
-export const Form = styled.form`
+export const FormContainer = styled(Form)`
     display: flex;
     flex-direction: column;
     align-items: center;
