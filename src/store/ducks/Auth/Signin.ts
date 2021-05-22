@@ -1,6 +1,9 @@
  import {AxiosError, AxiosResponse} from 'axios';
  
  import {User} from '~/shared/types/entity';
+ import {SigninDto} from '~/shared/dto/Auth/signin.dto';
+
+ import {InitialSigninStateProps} from '~/shared/store/app.state';
 
  export const signinTypes = {
     SIGNIN_REQUEST: 'auth/SIGNIN_REQUEST',
@@ -9,9 +12,9 @@
 };
 
 export const signinActions = {
-    signin: () => ({
+    signin: (data: SigninDto) => ({
         type: signinTypes.SIGNIN_REQUEST,
-        payload: {},
+        payload: data,
     }),
     signinSuccess: (data: AxiosResponse) => ({
         type: signinTypes.SIGNIN_SUCCESS,
@@ -23,18 +26,12 @@ export const signinActions = {
     }),
 };
 
-interface initialStateProps {
-    data: AxiosResponse<User> | undefined,
-    loading: boolean,
-    error: AxiosError | undefined,
-}
-
 interface actionProps {
     type?: string;
     payload?: AxiosError | AxiosResponse<User>;
 }
 
-const initialState: initialStateProps = {
+const initialState: InitialSigninStateProps = {
     data: undefined,
     loading: false,
     error: undefined,
